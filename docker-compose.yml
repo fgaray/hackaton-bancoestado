@@ -9,22 +9,8 @@ api:
    - db
   hostname: myappserver
 db:
-  hostname: mysqlserver
-  image: orchardup/mysql
+  hostname: postgresqlserver
+  image: sameersbn/postgresql:9.6-2
   environment:
-     MYSQL_ROOT_PASSWORD: root
-     MYSQL_DATABASE: dbname
-phpmyadmin:
-  image: phpmyadmin/phpmyadmin
-  links:
-    - db:db
-  ports:
-    - "80:80"
-  environment:
-    PMA_ARBITRARY: 1
-    PMA_HOST: db
-    PMA_PORT: 3306
-    MYSQL_USER: root
-    MYSQL_PASSWORD: root
-    MYSQL_ROOT_PASSWORD: root
-    MYSQL_DATABASE: dbname
+     POSTGRESQL_ROOT_PASSWORD: root
+     POSTGRESQL_DATABASE: dbname

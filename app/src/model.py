@@ -9,15 +9,29 @@ from sqlalchemy.ext.declarative import declarative_base
 
 # Database Configurations
 app = Flask(__name__)
-DATABASE = 'database-name'
+DATABASE = 'dbname'
 PASSWORD = 'password'
 USER = 'root'
-HOSTNAME = 'mysqlserver'
+HOSTNAME = 'postgreserver'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://%s:%s@%s/%s' % (USER,
+# MySQL connection
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://%s:%s@%s/%s' % (USER,
+#                                                                 PASSWORD,
+#                                                                 HOSTNAME,
+#                                                                 DATABASE)
+
+# PostgreSQL connection
+# For this app we use the default connector
+#engine = create_engine('postgresql://scott:tiger@localhost/mydatabase')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%s:%s@%s/%s' % (USER,
                                                                  PASSWORD,
                                                                  HOSTNAME,
                                                                  DATABASE)
+
+# psycopg2
+#engine = create_engine('postgresql+psycopg2://scott:tiger@localhost/mydatabase')
+
 db = SQLAlchemy(app)
 
 # Database migration command line

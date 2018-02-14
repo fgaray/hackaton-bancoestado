@@ -14,6 +14,7 @@ from sqlalchemy.sql.expression import func, select
 from flask_cors import CORS
 from time import time
 from datetime import datetime
+import request
 import random
 import os
 
@@ -222,6 +223,13 @@ def not_found(error):
 def bad_request(error):
     return make_response(jsonify({'error': BAD_REQUEST}), 400)
 
+# Example: call a external api
+# Reference: http://docs.python-requests.org/en/master/user/quickstart/
+def call_external_api():
+    # Method can be get or post
+    r = requests.get('https://api.github.com/events')
+     #r = requests.post('http://httpbin.org/post', data = {'key':'value'})
+    return r.text
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8082, debug=True)

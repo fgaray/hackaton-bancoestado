@@ -10,3 +10,5 @@ numpy
 flask_cors
 scipy
 scikit-learn
+request
+textblob
