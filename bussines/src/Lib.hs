@@ -1,6 +1,7 @@
-module Lib
-    ( someFunc
-    ) where
+module Lib (libMain) where
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+import FFI.Diagnostic
+import FFI.Prolog
+
+libMain :: IO ()
+libMain = runProlog

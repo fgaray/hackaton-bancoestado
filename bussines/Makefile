@@ -1,5 +1,11 @@
+PROLOG=/usr/lib/libswipl.a
+
+
 all:
-	stack build --fast -j 4
+	stack build --ghc-options="$(PROLOG)"
 
 repl:
-	stack ghci --ghci-options='-fobject-code -O0'
+	stack ghci --ghci-options='-fobject-code -O0 $(PROLOG)'
+
+run:
+	stack exec bussines-exe

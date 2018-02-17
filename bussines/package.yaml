@@ -21,14 +21,15 @@ description:         Please see the README on Github at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
-- persistent-postgresql
-- persistent
-- inline-c
-- servant
-- servant-client
-- servant-server
 - aeson
-
+- servant
+- servant-server
+- servant-client
+- text
+- containers
+- persistent
+- persistent-postgresql
+- inline-c
 
 library:
   source-dirs: src
@@ -46,7 +47,7 @@ executables:
 
 tests:
   bussines-test:
-    main:                Spec.hs
+    main:                Main.hs
     source-dirs:         test
     ghc-options:
     - -threaded
@@ -54,3 +55,4 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - bussines
+    - hspec
