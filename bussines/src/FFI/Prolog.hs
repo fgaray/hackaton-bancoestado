@@ -10,6 +10,7 @@ C.include "<stdio.h>"
 C.include "/usr/lib/swi-prolog/include/SWI-Prolog.h"
 
 
+
 runProlog :: IO ()
 runProlog = [C.block| void {
 
