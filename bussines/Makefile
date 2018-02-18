@@ -7,7 +7,7 @@ PYTHON=-L/usr/lib/python2.7/config-x86_64-linux-gnu -L/usr/lib -lpython2.7 -lpth
 
 
 all: test
-	stack build --ghc-options="$(PROLOG) $(PYTHON)"
+	stack build --ghc-options="$(PROLOG) $(PYTHON)"  -stubdir stub
 
 repl:
 	stack ghci --ghci-options='-fobject-code -O0 $(PROLOG) $(PYTHON)'

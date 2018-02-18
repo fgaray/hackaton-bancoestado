@@ -1,13 +1,15 @@
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE TemplateHaskell #-}
 -- | Functions to run python programs from haskell
-module FFI.Utils (Array(..), withNewArray) where
+module FFI.Utils (Array(..), withNewArray, withNewArrayFns) where
 
 import qualified Language.C.Inline as C
 import GHC.Ptr (Ptr)
+import Foreign.Ptr
 import Foreign.C.Types
-import Control.Monad (mapM_)
+import Import
 
+C.context (C.baseCtx <> C.funCtx) -- Required for function pointers
 C.include "<malloc.h>"
 
 newtype Array = Array { unArray :: (Ptr ()) }
@@ -37,9 +39,12 @@ freeArray (Array arr) = [C.block| void {
     }|]
 
 withNewArray :: [Ptr ()] -> (Array -> IO a) -> IO a
-withNewArray ptrs fn = do
-    array <- createArray (fromIntegral $ length ptrs)
-    mapM_ (\(i, ptr) -> storeAtIndex array ptr (fromIntegral i)) (zip [0..] ptrs)
+withNewArray ptrs = withNewArrayFns storeAtIndex (length ptrs) ptrs
+
+withNewArrayFns :: (Array -> a -> CInt -> IO ()) -> Int -> [a] -> (Array -> IO b) -> IO b
+withNewArrayFns storeAt size ptrs fn = do
+    array <- createArray (fromIntegral size)
+    mapM_ (\(i, ptr) -> storeAt array ptr (fromIntegral i)) (zip [0..] ptrs)
     result <- fn array
     freeArray array
     return result
