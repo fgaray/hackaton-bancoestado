@@ -1,3 +1,4 @@
 .stack-work/
 bussines.cabal
 *~
+*.pyc
