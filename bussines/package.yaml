@@ -30,6 +30,34 @@ dependencies:
 - persistent
 - persistent-postgresql
 - inline-c
+- bytestring
+
+
+default-extensions:
+- OverloadedStrings
+- EmptyCase
+- FlexibleContexts
+- FlexibleInstances
+- InstanceSigs
+- MultiParamTypeClasses
+- LambdaCase
+- MultiWayIf
+- NamedFieldPuns
+- TupleSections
+- DeriveFoldable
+- DeriveFunctor
+- DeriveGeneric
+- DeriveLift
+- DeriveTraversable
+- DerivingStrategies
+- GeneralizedNewtypeDeriving
+- StandaloneDeriving
+- BangPatterns
+- KindSignatures
+- TypeOperators
+- ScopedTypeVariables
+- TypeApplications
+- RecordWildCards
 
 library:
   source-dirs: src

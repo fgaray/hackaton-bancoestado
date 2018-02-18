@@ -6,7 +6,7 @@ PROLOG=-lswipl
 PYTHON=-L/usr/lib/python2.7/config-x86_64-linux-gnu -L/usr/lib -lpython2.7 -lpthread -ldl  -lutil -lm
 
 
-all:
+all: test
 	stack build --ghc-options="$(PROLOG) $(PYTHON)"
 
 repl:
@@ -17,3 +17,7 @@ clean:
 
 run:
 	stack exec bussines-exe
+
+.PHONY: test
+test:
+	stack test --ghc-options="$(PROLOG) $(PYTHON)"
